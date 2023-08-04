@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rastgele Sayı Üretici</title>
+    <style>
+        .h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .range-container {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        hr {
+            width: 100%;
+            height: 1px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rastgele Sayı Üretici</h1>
+    <div class="container">
+        <div class="range-container">
+            <label for="minValue">Minimum Değer:</label>
+            <input type="number" id="minValue" name="minValue" min="0" max="100" value="0" readonly>
+            <br>
+            <input type="range" id="minRange" name="minRange" min="0" max="100" oninput="updateLabels()">
+        </div>
+        <div class="range-container">
+            <label for="maxValue">Maksimum Değer:</label>
+            <input type="number" id="maxValue" name="maxValue" min="0" max="100" value="100" readonly>
+            <br>
+            <input type="range" id="maxRange" name="maxRange" min="0" max="100" oninput="updateLabels()">
+        </div>
+        <br>
+        <button type="button" onclick="generateRandomNumber()">Rastgele Sayı Üret</button>
+        <hr>
+        <label id="randomNumberLabel">Rastgele Sayı: </label>
+    </div>
+
+    <script>
+        function updateLabels() {
+            document.getElementById("minValue").value = document.getElementById("minRange").value;
+            document.getElementById("maxValue").value = document.getElementById("maxRange").value;
+        }
+
+        function generateRandomNumber() {
+            var minVal = parseInt(document.getElementById("minRange").value);
+            var maxVal = parseInt(document.getElementById("maxRange").value);
+
+            var randomNum = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
+
+            document.getElementById("randomNumberLabel").textContent = "Rastgele Sayı: " + randomNum;
+        }
+    </script>
+</body>
+</html>
